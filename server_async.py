@@ -30,10 +30,11 @@ def handle_conversation(reader, writer):
                     print('Client {} closed socket normally'.format(address))
                 return
             data += more_data
+            
         len_msg = str(data[:3], encoding="ascii")
         message = str(data[3:], encoding="ascii")
         cmd, c_value = message.split()
-        
+
         print(cmd, "=>", c_value)
         if cmd == 'ADD':
             value += int(c_value)

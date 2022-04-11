@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-# Foundations of Python Network Programming, Third Edition
-# https://github.com/brandon-rhodes/fopnp/blob/m/py3/chapter07/srv_threaded.py
-# Using multiple threads to serve several clients in parallel.
-
 from email import message
 import zen_utils
 from threading import Thread

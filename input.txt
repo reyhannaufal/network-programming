@@ -1,0 +1,4 @@
+ADD 10
+ADD 20
+DEC 10
+DEC 30

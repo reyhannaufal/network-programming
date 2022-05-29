@@ -54,7 +54,6 @@ def executor_3(zcontext, in_url, out_url):
 def logger(zcontext, url):
     zsock = zcontext.socket(zmq.PULL)
     zsock.bind(url)
-    print(zsock.recv_string())
     while True:
         log = zsock.recv_string()
         print('Logger:', log)
@@ -69,10 +68,10 @@ def main(zcontext):
     pushpull = 'tcp://127.0.0.1:6702'
     start_thread(generator, zcontext, pubsub)
     start_thread(executor_1, zcontext, pubsub, pushpull)
-    start_thread(executor_2, zcontext, pubsub, pushpull)
-    start_thread(executor_3, zcontext, pubsub, pushpull)
+    # start_thread(executor_2, zcontext, pubsub, pushpull)
+    # start_thread(executor_3, zcontext, pubsub, pushpull)
     start_thread(logger, zcontext, pushpull)
-    time.sleep(30)
+    time.sleep(5)
 
 if __name__ == '__main__':
     main(zmq.Context())

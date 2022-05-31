@@ -20,7 +20,6 @@ for idx, a in enumerate(a_doc):
 
 
 def getGoPackage(query, n):
-    golang_package = requests.get("https://pkg.go.dev/search?q=" + query)
     golang_package = requests.get("https://pkg.go.dev/search?limit="+str(n)+"&m=package&q=" + query)
     soup = BeautifulSoup(golang_package.content, 'html.parser')
     packages_links = soup.find_all('div', class_=re.compile("SearchSnippet-headerContainer"))
@@ -28,10 +27,13 @@ def getGoPackage(query, n):
 
     print("\n")
     for idx, package_link in enumerate(packages_links):
-        print(idx + 1, package_link.find('a').get('href'))
-        print(packages_descriptions[idx].text)
+        if idx == n:
+            break
+        print(idx + 1, ": ", package_link.text)
+        print("\t", packages_descriptions[idx].text)
+        print("\n")
         
 
 
 
-getGoPackage("llrb", 10)
+getGoPackage("llrb", 2)
